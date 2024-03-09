@@ -1,0 +1,32 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'my-docker-image'
+  dockerfilePath: 'DockerInDocker/Dockerfile'
+
+jobs:
+- job: BuildAndRunDockerImage
+  steps:
+  - checkout: self
+
+  - task: Docker@2
+    displayName: Build Docker image
+    inputs:
+      command: build
+      repository: $(imageName)
+      Dockerfile: $(dockerfilePath)
+      tags: 'latest'
+      buildContext: '.'
+
+  - task: Docker@2
+    displayName: Run Docker container
+    inputs:
+      command: run
+      arguments: >-
+        --rm --network host -v /var/run/docker.sock:/var/run/docker.sock $(imageName)

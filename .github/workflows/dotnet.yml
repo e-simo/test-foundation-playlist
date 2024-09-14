@@ -23,6 +23,7 @@ jobs:
     - name: Restore dependencies
       run: | 
         pwd
+        ls
    #   run: dotnet restore
    # - name: Build
    #   run: dotnet build --no-restore

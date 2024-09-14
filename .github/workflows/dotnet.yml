@@ -24,6 +24,8 @@ jobs:
       run: | 
         pwd
         ls
+        cd 'TestContainerDemo - CICD'
+        dotnet build
    #   run: dotnet restore
    # - name: Build
    #   run: dotnet build --no-restore

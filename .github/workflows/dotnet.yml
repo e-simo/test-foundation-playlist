@@ -26,6 +26,7 @@ jobs:
         ls
         cd 'TestContainerDemo - CICD'
         dotnet build
+        dotnet test
    #   run: dotnet restore
    # - name: Build
    #   run: dotnet build --no-restore
